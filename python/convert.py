@@ -7,41 +7,49 @@ def convert_xlsx_to_csv(xlsx_filename):
     folder, filename = os.path.split(xlsx_filename)
     basename,_ = os.path.splitext(filename)
 
-    print("folder:" + folder)
-    print("filename:" + filename)
-    print("basename:" + basename)
+    # Get the current working directory (which is the 'python_folder' in your case)
+    current_directory = os.getcwd()
+    # Go up one level to the root of the project
+    project_root = os.path.dirname(current_directory)
+    excelFolder = os.path.join(project_root, 'excel_files')
 
-    # # Get the current working directory (which is the 'python_folder' in your case)
-    # current_directory = os.getcwd()
-    # # Go up one level to the root of the project
-    # project_root = os.path.dirname(current_directory)
-    # excelFolder = os.path.join(project_root, 'excel_files')
+    # join the name and path and check if the files exists there
+    xlsx_filepath = os.path.join(excelFolder, xlsx_filename)
+    if not os.path.isfile(xlsx_filepath):
+        print(f"File {xlsx_filepath} not found!")
+        return
+    else:
+        print(f"File {xlsx_filepath} present!")
 
-    # # join the path and chekc if the files exists there
-    # xlsx_filepath = os.path.join(excelFolder, xlsx_filename)
-    # if not os.path.isfile(xlsx_filepath):
-    #     print(f"File {xlsx_filepath} not found!")
-    # return
+    #creates a folder in the python directory
+    # outputFolder = os.path.join((os.path.abspath(__file__)), 'csv_files') 
+    
+    outputFolder = os.path.join(project_root, 'csv_files')
+    print("made output folder")
 
-    # outputFolder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'csv_files')
+    if os.path.exists(outputFolder):
+        print(f"Output folder '{outputFolder}' already exists.")
+    else:
+        print(f"Creating output folder '{outputFolder}'.")
 
-    # csv_filename = os.path.join(outputFolder, basename + ".csv")
+    os.makedirs(outputFolder, exist_ok=True)
+        
+    csv_filename = os.path.join(outputFolder, basename + ".csv")
+    print (f"New file created: '{csv_filename}'")
 
-    # os.makedirs(outputFolder, exist_ok=True)
+    wb = openpyxl.load_workbook(xlsx_filepath)
 
-    # wb = openpyxl.load_workbook(xlsx_filepath)
+    # select active sheet
+    sheet = wb.active
 
-    # # select active sheet
-    # sheet = wb.active
+    with open(csv_filename, 'w', newline="") as csvfile:
+        writer = csv.writer(csvfile)
 
-    # with open(csv_filename, 'w', newline="") as csvfile:
-    #     writer = csv.writer(csvfile)
+        #iterate through rows in the Excel sheet
+        for row in sheet.iter_rows(values_only=True):
+            writer.writerow(row)
 
-    #     #iterate through rows in the Excel sheet
-    #     for row in sheet.iter_rows(values_only=True):
-    #         writer.writerow(row)
-
-    # print(f"Conversion complete: {csv_filename}")
+    print(f"Conversion complete: {csv_filename}")
 
 
 # Entry point: Script is called from the command line with an argument
