@@ -7,7 +7,7 @@ def convert_xlsx_to_csv(xlsx_filename):
     folder, filename = os.path.split(xlsx_filename)
     basename,_ = os.path.splitext(filename)
 
-    # Get the current working directory (which is the 'python_folder' in your case)
+    # Get the current working directory (which is the 'python_folder' in this case)
     current_directory = os.getcwd()
     # Go up one level to the root of the project
     project_root = os.path.dirname(current_directory)
@@ -23,9 +23,7 @@ def convert_xlsx_to_csv(xlsx_filename):
 
     #creates a folder in the python directory
     # outputFolder = os.path.join((os.path.abspath(__file__)), 'csv_files') 
-    
     outputFolder = os.path.join(project_root, 'csv_files')
-    print("made output folder")
 
     if os.path.exists(outputFolder):
         print(f"Output folder '{outputFolder}' already exists.")
@@ -33,9 +31,9 @@ def convert_xlsx_to_csv(xlsx_filename):
         print(f"Creating output folder '{outputFolder}'.")
 
     os.makedirs(outputFolder, exist_ok=True)
-        
+    
+    # creates new csv file 
     csv_filename = os.path.join(outputFolder, basename + ".csv")
-    print (f"New file created: '{csv_filename}'")
 
     wb = openpyxl.load_workbook(xlsx_filepath)
 
