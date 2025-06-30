@@ -1,0 +1,60 @@
+# C++ build directories and output
+/build/
+/bin/
+/obj/
+/Debug/
+/Release/
+/out/
+
+# Python virtual environment
+/venv/
+/__pycache__/
+
+# CMake and other build system files
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Makefile
+Makefile.user
+*.cmake
+*.make
+
+# IDE files (Visual Studio, CLion, etc.)
+.vscode/
+.idea/
+*.vs
+*.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln
+
+# C++ object and executable files
+*.o
+*.obj
+*.exe
+*.out
+*.dll
+*.so
+*.dylib
+*.pdb
+*.lib
+
+# Temporary files
+*.log
+*.tmp
+*.swp
+*.bak
+*.bak~
+*~
+
+# Excel files (if you don't want to track these in Git)
+# *.xlsx
+# *.xls
+
+# Python bytecode
+*.pyc
+*.pyo
+
+# External libraries or dependencies (if any)
+# /external_libs/
