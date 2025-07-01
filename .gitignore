@@ -49,8 +49,8 @@ Makefile.user
 *~
 
 # Excel files (if you don't want to track these in Git)
-# *.xlsx
-# *.xls
+*.xlsx
+*.xls
 
 # Python bytecode
 *.pyc
