@@ -10,8 +10,9 @@ def convert_xlsx_to_csv(xlsx_filename):
     # Get the current working directory (which is the 'python_folder' in this case)
     current_directory = os.getcwd()
     # Go up one level to the root of the project
-    project_root = os.path.dirname(current_directory)
-    excelFolder = os.path.join(project_root, 'excel_files')
+    # project_root = os.path.abspath(os.path.join(current_directory))
+
+    excelFolder = os.path.join(current_directory, 'excel_files')
 
     # join the name and path and check if the files exists there
     xlsx_filepath = os.path.join(excelFolder, xlsx_filename)
@@ -23,7 +24,7 @@ def convert_xlsx_to_csv(xlsx_filename):
 
     #creates a folder in the python directory
     # outputFolder = os.path.join((os.path.abspath(__file__)), 'csv_files') 
-    outputFolder = os.path.join(project_root, 'csv_files')
+    outputFolder = os.path.join(current_directory, 'csv_files')
 
     if os.path.exists(outputFolder):
         print(f"Output folder '{outputFolder}' already exists.")

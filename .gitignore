@@ -56,5 +56,8 @@ Makefile.user
 *.pyc
 *.pyo
 
+#Generated CSV files
+*.csv
+
 # External libraries or dependencies (if any)
 # /external_libs/
