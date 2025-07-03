@@ -1,13 +1,15 @@
 #include <iostream>
+#include <string>
 #include <filesystem>
-#include "rental_report.h"
+#include "csv_utils.h"
 
 namespace fs = std::filesystem;
 using namespace std;
 
-int main(int argc, char* argv[]) {
-    if (argc != 2) {
-        cerr << "Usage: rental_report <csv_file>" << endl;
+int main(int argc, char* argv[])
+{
+    if (argc != 2){
+        cerr << "Usage: removedups <csv_file>" << endl;
         return 1;
     }
 
@@ -19,7 +21,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    generateRentalReport(input_csv);
+    removeDuplicates(input_csv);
 
     return 0;
 }

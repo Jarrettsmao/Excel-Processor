@@ -51,7 +51,7 @@ void removeDuplicates(const string& input_csv){
 
     //Read the CSV file line by line
     while (getline(infile, line)){
-        line = removeIdFromLine(line);
+        line = removeIdFromLine(line); //note this is only required for some data sets
         line = trimWhiteSpace(line);
 
         // Debugging: Print the line after trimming

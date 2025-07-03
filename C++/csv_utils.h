@@ -1,10 +1,10 @@
-#ifndef HEADER_H
-#define HEADER_H
+#ifndef CSV_UTILS_H
+#define CSV_UTILS_H
 
 #include <string>
 #include <filesystem>
 
-namespace fs = std::filesystem;
+// namespace fs = std::filesystem;
 
 void removeDuplicates(const std::string& input_csv);
 
