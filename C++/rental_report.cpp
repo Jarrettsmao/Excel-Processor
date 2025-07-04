@@ -16,14 +16,14 @@ int dateDifference(const string& startDate, const string& endDate){
 
     stringstream ssStart(startDate), ssEnd(endDate);
     
-    ssStart >> get_time(&startTm, "%m/%d/%Y");
-    ssStart >> get_time(&endTm, "%m/%d/%Y");
+    ssStart >> get_time(&startTm, "%Y-%m-%d");
+    ssEnd >> get_time(&endTm, "%Y-%m-%d");
     
     //convert from type tm to time_t
     time_t start_time = mktime(&startTm);
     time_t end_time = mktime(&endTm);
     
-    return difftime(end_time, start_time) / (60 * 60 * 24); //convert seconds to days
+    return difftime(end_time, start_time) / (60 * 60 * 24) + 1; //convert seconds to days //need to add 1 to represent the days properly
 }
 
 //Function to process rental data and generate a rental report
@@ -63,6 +63,8 @@ void generateRentalReport(const string& input_csv){
         getline(ss, endDate, ',');
 
         if (type == "Rental" && !startDate.empty() && !endDate.empty()) {
+            cout << "start: " + startDate << endl;
+            cout << "end: " + endDate << endl; 
             int daysOnSite = dateDifference(startDate, endDate);
             rentalReport[job][description] += daysOnSite;
         }

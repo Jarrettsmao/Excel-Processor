@@ -7,7 +7,7 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
     if (argc != 2) {
-        cerr << "Usage: rental_report <csv_file>" << endl;
+        cerr << "Usage: rentalreport <csv_file>" << endl;
         return 1;
     }
 
