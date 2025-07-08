@@ -37,10 +37,65 @@ int dateDifference(const string& startDate, const string& endDate){
     return difftime(end_time, start_time) / (60 * 60 * 24) + 1; //convert seconds to days //need to add 1 to represent the days properly
 }
 
+//helper function print out pricing data
+void printPricingMap(const std::unordered_multimap<std::string, EquipmentPricing>& pricingMap) {
+    // Iterate through the map
+    for (const auto& entry : pricingMap) {
+        const std::string& company = entry.first;  // The key (company)
+        const EquipmentPricing& pricing = entry.second;  // The value (equipment pricing)
+
+        std::cout << "Company: " << company << "\n";  // Print the key (company)
+        std::cout << "Description: " << pricing.description << "\n";
+        std::cout << "1 Day Price: " << pricing.oneDayPrice << "\n";
+        std::cout << "1 Week Price: " << pricing.oneWeekPrice << "\n";
+        std::cout << "4 Week Price: " << pricing.fourWeekPrice << "\n";
+        std::cout << "----------------------------\n";
+    }
+}
+
+//reads the pricing data from EquipmentPrice sheet
+unordered_multimap<string, EquipmentPricing> readPricingData(const string& pricingFile){
+    unordered_multimap<string, EquipmentPricing> pricingMap;
+    ifstream file(pricingFile);
+    string line;
+
+    for (int i = 0; i < 19; i++){
+        getline(file, line); //skips header line and unnecessary lines
+    }
+    // cout << line << endl;
+    while (getline(file, line)){
+        string company, description;
+        float oneDayPrice, oneWeekPrice, fourWeekPrice;
+        string temp;
+        stringstream ss(line);
+
+        getline(ss, temp, ','); //skip updated date
+        getline(ss, temp, ','); //skip type
+        getline(ss, company, ',');
+        getline(ss, description, ','); 
+        getline(ss, temp, ','); //skip make
+        getline(ss, temp, ','); //skip model
+
+        ss >> oneDayPrice;
+        ss.ignore();
+        ss >> oneWeekPrice;
+        ss.ignore();
+        ss >> fourWeekPrice;
+
+        description = trimWhiteSpace(description);
+
+        pricingMap.insert({company, {description, oneDayPrice, oneWeekPrice, fourWeekPrice}});
+    }
+
+    // printPricingMap(pricingMap);
+
+    return pricingMap;
+}
+
 //gets job number and foreman name
-unordered_map<string, string> readJobForemanDetails(const string& foremanCsvFile){
+unordered_map<string, string> readJobForemanDetails(const string& foremanFile){
     unordered_map<string, string> jobForemanMap;
-    ifstream file(foremanCsvFile);
+    ifstream file(foremanFile);
     string line;
 
     //skip header line
@@ -61,66 +116,66 @@ unordered_map<string, string> readJobForemanDetails(const string& foremanCsvFile
     return jobForemanMap;
 }
 
-//Function to process rental data and generate a rental report
-void generateRentalReport(const string& equip_data, const string& date, const unordered_map<string, string>& jobForemanMap){
-    //use a map to sum days byt equipment description
+// Function to read out job data into the rentalReport map and return it
+unordered_map<string, unordered_map<string, int>> processRentalData(const string& equip_data, const unordered_map<string, string>& jobForemanMap) {
     unordered_map<string, unordered_map<string, int>> rentalReport;
-
     ifstream file(equip_data);
     string line;
 
+    // Skip the header line
     getline(file, line);
 
     while(getline(file, line)){
         string job, foreman, type, description, startDate, endDate;
 
-        //Split the line into the above
+        // Split the line into the above
         stringstream ss(line);
         getline(ss, job, ',');
         getline(ss, type, ',');
 
-        //Skip unncessary columns
+        // Skip unnecessary columns
         string temp;
-        getline(ss, temp, ','); //skip PO#
-        getline(ss, temp, ','); //Skip Supplier
-
+        getline(ss, temp, ','); // Skip PO#
+        getline(ss, temp, ','); // Skip Supplier
         getline(ss, startDate, ',');
 
-        //Skip unncessary columns
-        getline(ss, temp, ','); //Skip Delivery Time
-
+        // Skip unnecessary columns
+        getline(ss, temp, ','); // Skip Delivery Time
         getline(ss, description, ',');
         description = trimWhiteSpace(description);
 
-        //Skip unncessary columns
-        getline(ss, temp, ','); //skip notes
-        getline(ss, temp, ','); //skip status/call off number
-
+        // Skip unnecessary columns
+        getline(ss, temp, ','); // Skip notes
+        getline(ss, temp, ','); // Skip status/call off number
         getline(ss, endDate, ',');
 
-        if (jobForemanMap.find(job) != jobForemanMap.end()){
-            foreman = jobForemanMap.at(job);
-        } else {
-            foreman = "N/A"; 
-        }
+        // Get the foreman from the job map
+        foreman = jobForemanMap.count(job) ? jobForemanMap.at(job) : "N/A";
 
+        // Process only rental jobs with valid dates
         if (type == "Rental" && !startDate.empty() && !endDate.empty()) {
             int daysOnSite = dateDifference(startDate, endDate);
             rentalReport[job][description] += daysOnSite;
         }
     }
 
-    //create reports folder 
+    return rentalReport;
+}
+
+
+// Function to generate the rental report using the rentalReport map and pricing data
+void generateRentalReport(const string& date, const unordered_map<string, unordered_map<string, int>>& rentalReport) {
+    // Create reports folder if it doesn't exist
     string reportsDir = "reports";
-    if(!fs::exists(reportsDir)){
+    if (!fs::exists(reportsDir)) {
         fs::create_directory(reportsDir);
     }
 
-    //create output file in reports folder
+    // Create output file in reports folder
     string outputFile = reportsDir + "/report-" + date + ".txt";
     ofstream reportFile(outputFile);
 
-    if(!reportFile.is_open()){
+    if (!reportFile.is_open()) {
         cerr << "Error: Unable to create the report file!" << endl;
         return;
     }
@@ -128,15 +183,13 @@ void generateRentalReport(const string& equip_data, const string& date, const un
     // Print the rental report
     reportFile << "Rental Report\n";
     reportFile << "--------------------------------\n";
-    
+
     // Iterate over each job
     for (const auto& jobEntry : rentalReport) {
-        string foreman = jobForemanMap.at(jobEntry.first);
-        if (foreman == ""){
-            foreman = "N/A";
-        }
-        reportFile << "Job #" << jobEntry.first << "- Foreman:" << foreman << "\n";
-        // reportFile << "Foreman: " << jobEntry.
+        string job = jobEntry.first;
+        string foreman = "N/A"; // Default to "N/A"
+        // Use jobForemanMap to look up the foreman (optional, you can pass it into this function if needed)
+        reportFile << "Job #" << job << "- Foreman: " << foreman << "\n";
 
         // Iterate over each equipment description for this job
         for (const auto& descriptionEntry : jobEntry.second) {
