@@ -53,6 +53,57 @@ void printPricingMap(const std::unordered_multimap<std::string, EquipmentPricing
     }
 }
 
+//helper function to delete invoice entries in the csv
+void removeInvoiceEntries(const string& inputFile){
+    ifstream file(inputFile);
+    if (!file.is_open()){
+        cerr << "Error: Unable to open the file" << inputFile << endl;
+        return;
+    }
+
+    string tempFile = inputFile + ".temp";
+    ofstream outFile(tempFile);
+    if(!outFile.is_open()){
+        cerr << "Error: Unable to create temporary file." << endl;
+        return;
+    } 
+
+    string line;
+    bool isFirstLine = true;
+    while (getline(file, line)){
+        stringstream ss(line);
+        string job, type;
+
+        //read job and type columns
+        getline(ss, job, ',');
+        getline(ss, type, ',');
+
+        //skip invoice entries
+        if (type != "Invoice"){
+            if (isFirstLine){
+                outFile << line << endl;
+                isFirstLine = false;
+            } else {
+                outFile << line << endl;
+            }
+        }
+    }
+
+    file.close();
+    outFile.close();
+
+    //Replace the original file with the new one
+    if (remove(inputFile.c_str()) != 0){
+        cerr << "Error: Unable to delete original file" << endl;
+    } else {
+        if (rename(tempFile.c_str(), inputFile.c_str()) != 0){
+            cerr << "Error: Unable to rename temporary file." << endl;
+        }
+    }
+
+    cout << "Invoice entries have been removed from " << inputFile << endl; 
+}
+
 //reads the pricing data from EquipmentPrice sheet
 unordered_multimap<string, EquipmentPricing> readPricingData(const string& pricingFile){
     unordered_multimap<string, EquipmentPricing> pricingMap;
@@ -115,6 +166,8 @@ unordered_map<string, string> readJobForemanDetails(const string& foremanFile){
     }
     return jobForemanMap;
 }
+
+// unoredered_map<string, unordered_map<>
 
 // Function to read out job data into the rentalReport map and return it
 unordered_map<string, unordered_map<string, int>> processRentalData(const string& equip_data, const unordered_map<string, string>& jobForemanMap) {

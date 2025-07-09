@@ -24,7 +24,9 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-        // Read data from CSV files
+    removeInvoiceEntries(equip_data);
+
+    // Read data from CSV files
     unordered_map<string, string> jobForemanMap = readJobForemanDetails(foreman_contacts);
     unordered_multimap<string, EquipmentPricing> pricingDataMap = readPricingData(price_data);
 

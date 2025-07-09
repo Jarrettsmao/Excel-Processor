@@ -15,6 +15,9 @@ struct EquipmentPricing {
 
 // Functions
 
+//delete invoices from csv file
+void removeInvoiceEntries(const std::string& inputFile);
+
 // Reads job foreman details from a CSV file and returns a map
 std::unordered_map<std::string, std::string> readJobForemanDetails(const std::string& foremanFile);
 
