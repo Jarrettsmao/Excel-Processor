@@ -7,6 +7,7 @@
 #include <ctime>
 #include <string>
 #include <filesystem>
+#include <regex>
 
 using namespace std;
 namespace fs = filesystem;
@@ -18,6 +19,56 @@ string trimWhiteSpace(const string& str){
     }
     size_t last = str.find_last_not_of(" \t\r\n");
     return str.substr(first, (last - first + 1));
+}
+
+//helper function to remove lines that dont start with job # for foremancontacts.csv
+void cleanJobNum(const string& inputFile){
+    ifstream file(inputFile);
+    if (!file.is_open()) {
+        cerr << "Error: Unable to open the file " << inputFile << endl;
+        return;
+    }
+
+    string tempFile = inputFile + ".temp";
+    ofstream outFile(tempFile);
+    if (!outFile.is_open()){
+        cerr << "Error: Unable to create temporary file." << endl;
+        return;
+    }
+
+    string line;
+    bool isFirstLine = true;
+
+    regex timePattern(R"(^\d{1,2}:\d{2} (AM|PM))");
+
+    while (getline(file, line)){
+        stringstream ss(line);
+        string job;
+
+        getline(ss, job, ',');
+        job = trimWhiteSpace(job);
+
+        if (isFirstLine){
+            outFile << line << endl;
+            isFirstLine = false;
+        } else if (!job.empty() && isdigit(job[0]) && !regex_search(job, timePattern)){
+            outFile << line << endl;
+        }
+    }
+
+    file.close();
+    outFile.close();
+
+    // Replace the original file with the new one
+    if (remove(inputFile.c_str()) != 0) {
+        cerr << "Error: Unable to delete the original file." << endl;
+    } else {
+        if (rename(tempFile.c_str(), inputFile.c_str()) != 0) {
+            cerr << "Error: Unable to rename temporary file." << endl;
+        }
+    }
+
+    cout << "Non-numeric job entries have been removed from " << inputFile << endl;
 }
 
 //helper function to calculate the difference in days between two dates
@@ -52,6 +103,16 @@ void printPricingMap(const std::unordered_multimap<std::string, EquipmentPricing
         std::cout << "----------------------------\n";
     }
 }
+
+//helper function print out jobforemanmap
+void printJobForemanMap(const std::unordered_map<std::string, std::string>& jobForemanMap) {
+    std::cout << "JobForemanMap Contents:" << std::endl;
+    for (const auto& entry : jobForemanMap) {
+        std::cout << "Job: " << entry.first << " => Foreman: " << entry.second << std::endl;
+    }
+    std::cout << "--------------------------------" << std::endl;
+}
+
 
 //helper function to delete invoice entries in the csv
 void removeInvoiceEntries(const string& inputFile){
@@ -102,6 +163,42 @@ void removeInvoiceEntries(const string& inputFile){
     }
 
     cout << "Invoice entries have been removed from " << inputFile << endl; 
+}
+
+//helper function to calculate rental costs and check if for example 4 days is greater than 1 weekthen swap to 1 week price
+float calculateRentalCost(int daysOnSite, const EquipmentPricing& pricing){
+    //calculate # of 4-week blocks
+    int fourWeeks = daysOnSite / 28;
+    daysOnSite = daysOnSite - (fourWeeks * 28);
+
+    //calculate # of 1-week blocks
+    int weeks = daysOnSite / 7;
+    daysOnSite = daysOnSite - (weeks * 7);
+
+    //calculate remaining days after full weeks
+    int days = daysOnSite;
+
+    //Calculate the price for 1-day, 1-week, & 4-week based on the daysOnSite
+    float fourWeekCost = fourWeeks * pricing.fourWeekPrice;
+    float oneWeekCost = weeks * pricing.oneWeekPrice;
+    float oneDayCost = days * pricing.oneDayPrice; 
+
+    //if the cost of the days exceeds one-week cost, replace with one-week price
+    if (oneDayCost > pricing.oneWeekPrice){
+        oneDayCost = pricing.oneWeekPrice;
+    }
+
+    oneWeekCost += oneDayCost;
+
+    //If the cost of the weeks exceeds the four-week cost, replace with the four-week price
+    if (oneWeekCost > pricing.fourWeekPrice){
+        oneWeekCost = pricing.fourWeekPrice;
+    }
+
+    //Calculate total cost by summing up the costs
+    float total = oneWeekCost + fourWeekCost;
+
+    return total;
 }
 
 //reads the pricing data from EquipmentPrice sheet
@@ -161,17 +258,24 @@ unordered_map<string, string> readJobForemanDetails(const string& foremanFile){
         getline(ss, temp, ','); //skip job name
         getline(ss, foreman, ',');
 
+        if (foreman == ""){
+            foreman = "N/A";
+        }
+
         //Store the job and foreman in the map
         jobForemanMap[job] = foreman;
     }
+
+    // printJobForemanMap(jobForemanMap);
+
     return jobForemanMap;
 }
 
 // unoredered_map<string, unordered_map<>
 
 // Function to read out job data into the rentalReport map and return it
-unordered_map<string, unordered_map<string, int>> processRentalData(const string& equip_data, const unordered_map<string, string>& jobForemanMap) {
-    unordered_map<string, unordered_map<string, int>> rentalReport;
+unordered_map<string, JobInfo> processRentalData(const string& equip_data, unordered_map<string, string>& jobForemanMap, const unordered_multimap<string, EquipmentPricing>& pricingMap) {
+    unordered_map<string, JobInfo> rentalReport;
     ifstream file(equip_data);
     string line;
 
@@ -179,7 +283,7 @@ unordered_map<string, unordered_map<string, int>> processRentalData(const string
     getline(file, line);
 
     while(getline(file, line)){
-        string job, foreman, type, description, startDate, endDate;
+        string job, foreman, type, supplier, description, startDate, endDate;
 
         // Split the line into the above
         stringstream ss(line);
@@ -189,7 +293,7 @@ unordered_map<string, unordered_map<string, int>> processRentalData(const string
         // Skip unnecessary columns
         string temp;
         getline(ss, temp, ','); // Skip PO#
-        getline(ss, temp, ','); // Skip Supplier
+        getline(ss, supplier, ',');
         getline(ss, startDate, ',');
 
         // Skip unnecessary columns
@@ -203,21 +307,37 @@ unordered_map<string, unordered_map<string, int>> processRentalData(const string
         getline(ss, endDate, ',');
 
         // Get the foreman from the job map
-        foreman = jobForemanMap.count(job) ? jobForemanMap.at(job) : "N/A";
+        foreman = jobForemanMap[job];
 
         // Process only rental jobs with valid dates
         if (type == "Rental" && !startDate.empty() && !endDate.empty()) {
             int daysOnSite = dateDifference(startDate, endDate);
-            rentalReport[job][description] += daysOnSite;
+
+            if (rentalReport.count(job) == 0){
+                rentalReport[job] = JobInfo(foreman); //create a new jobinfo if the job doesn't exist
+            }
+
+            auto range = pricingMap.equal_range(supplier);
+            float equipmentCost = 0.0f;
+
+            //Find the corresponding equipment pricing for this description
+            for (auto it = range.first; it != range.second; it++){
+                if (it->second.description == description){
+                    equipmentCost = calculateRentalCost(daysOnSite, it->second);
+                    break;
+                }
+            }
+
+            rentalReport[job].equipment[description] += daysOnSite;
+            rentalReport[job].totalCost += equipmentCost;
         }
     }
-
     return rentalReport;
 }
 
 
 // Function to generate the rental report using the rentalReport map and pricing data
-void generateRentalReport(const string& date, const unordered_map<string, unordered_map<string, int>>& rentalReport) {
+void generateRentalReport(const string& date, const unordered_map<string, JobInfo>& rentalReport) {
     // Create reports folder if it doesn't exist
     string reportsDir = "reports";
     if (!fs::exists(reportsDir)) {
@@ -239,14 +359,14 @@ void generateRentalReport(const string& date, const unordered_map<string, unorde
 
     // Iterate over each job
     for (const auto& jobEntry : rentalReport) {
-        string job = jobEntry.first;
-        string foreman = "N/A"; // Default to "N/A"
-        // Use jobForemanMap to look up the foreman (optional, you can pass it into this function if needed)
-        reportFile << "Job #" << job << "- Foreman: " << foreman << "\n";
+        const string& job = jobEntry.first;
+        const JobInfo& jobInfo = jobEntry.second;
+        
+        reportFile << "Job #" << job << "- Foreman: " << jobInfo.foreman << ", Total Cost: $" << "\n";
 
         // Iterate over each equipment description for this job
-        for (const auto& descriptionEntry : jobEntry.second) {
-            reportFile << "  " << descriptionEntry.first << ": " << descriptionEntry.second << " days onsite\n";
+        for (const auto& equipmentEntry : jobInfo.equipment) {
+            reportFile << "  " << equipmentEntry.first << ": " << equipmentEntry.second << " days onsite\n";
         }
 
         reportFile << "\n";
