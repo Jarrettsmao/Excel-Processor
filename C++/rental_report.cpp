@@ -308,6 +308,12 @@ unordered_map<string, JobInfo> processRentalData(const string& equip_data, unord
 
         // Get the foreman from the job map
         foreman = jobForemanMap[job];
+        // if (foreman.empty()) {
+        //     cout << "Foreman for job " << job << " is empty!" << endl;
+        // }
+        // else {
+        //     cout << "Foreman for job " << job << " is: " << foreman << endl;
+        // }
 
         // Process only rental jobs with valid dates
         if (type == "Rental" && !startDate.empty() && !endDate.empty()) {
@@ -330,6 +336,11 @@ unordered_map<string, JobInfo> processRentalData(const string& equip_data, unord
 
             rentalReport[job].equipment[description] += daysOnSite;
             rentalReport[job].totalCost += equipmentCost;
+
+            // cout << "Job: " << job 
+            // << " description: " << description
+            // <<  " Total Cost: $" << rentalReport[job].totalCost 
+            // << endl;
         }
     }
     return rentalReport;
@@ -362,7 +373,7 @@ void generateRentalReport(const string& date, const unordered_map<string, JobInf
         const string& job = jobEntry.first;
         const JobInfo& jobInfo = jobEntry.second;
         
-        reportFile << "Job #" << job << "- Foreman: " << jobInfo.foreman << ", Total Cost: $" << "\n";
+        reportFile << "Job #" << job << "- Foreman: " << jobInfo.foreman << ", Total Cost: $ " << jobInfo.totalCost << "\n";
 
         // Iterate over each equipment description for this job
         for (const auto& equipmentEntry : jobInfo.equipment) {
@@ -371,6 +382,8 @@ void generateRentalReport(const string& date, const unordered_map<string, JobInf
 
         reportFile << "\n";
     }
+    reportFile << "--------------------------------\n";
+    reportFile << "Note: Older jobs may have innacurate sum totals due to missing/incorrect data entry.";
 
     cout << "Rental report has been saved to: " << outputFile << endl;
 
