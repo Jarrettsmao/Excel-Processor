@@ -1,9 +1,210 @@
 Rental Report
 --------------------------------
+Job #845- Foreman: Foreman 2, Total Cost: $ 315
+  0-19' SL Electric: 8 days onsite
+  32' SL Rough Terrain: 2 days onsite
+
+Job #842- Foreman: Foreman 4, Total Cost: $ 9044
+  12K Forklift Telehandler: 1 days onsite
+  40-45' Articulating Boom: 25 days onsite
+  0-19' SL Electric: 24 days onsite
+  51-70 kW 70KVA Generator: 50 days onsite
+  Stud Gun: 3 days onsite
+  71-100 kW 125KVA Generator: 1 days onsite
+
+Job #835- Foreman: Foreman 7, Total Cost: $ 350
+  400 Amp Welder: 4 days onsite
+
+Job #829- Foreman: Foreman 1, Total Cost: $ 4965
+  : 1 days onsite
+  "0-19' 30"" SL Electric": 4 days onsite
+  35-45' SL Electric: 5 days onsite
+  Jib/Trussboom: 8 days onsite
+  10K Forklift Telehandler: 21 days onsite
+
+Job #817- Foreman: Foreman 1, Total Cost: $ 24805
+  "3/4"" x 50' Air Hose": 8 days onsite
+  10K Forklift Telehandler 75': 13 days onsite
+  60-66' Straight Boom: 21 days onsite
+  400 Amp Welder: 7 days onsite
+  51-70 kW 70KVA Generator: 19 days onsite
+  26-35' SL: 19 days onsite
+  0-19' SL Electric: 44 days onsite
+  150-200 CFM Air Compressor: 26 days onsite
+  300 Amp Welder: 48 days onsite
+  Jib/Trussboom: 27 days onsite
+  40-45' Straight Boom: 57 days onsite
+  10K Forklift Telehandler: 15 days onsite
+
+Job #815- Foreman: Foreman 3, Total Cost: $ 80
+  Jib/Trussboom: 1 days onsite
+
+Job #810- Foreman: Foreman 1, Total Cost: $ 697.5
+  Sensidyne GilAir Plus Data Log Personal Air Sampler: 57 days onsite
+
+Job #809- Foreman: Foreman 3, Total Cost: $ 33466
+  5K Forklift Telehandler: 348 days onsite
+  "0-19' 30"" SL Electric": 342 days onsite
+  20' Runabout: 47 days onsite
+  18' Material Lift: 36 days onsite
+  400 Amp Welder: 339 days onsite
+  12' Trussboom: 48 days onsite
+  10K Telehandler: 48 days onsite
+
+Job #798- Foreman: Foreman 2, Total Cost: $ 1.54787e+06
+  0-19' SL Electric: 64 days onsite
+  "3/4"" x 50' Air Hose": 16 days onsite
+  500 Amp Welder: 8 days onsite
+  26-35' SL: 10 days onsite
+  "Horse head Lift Hook Attachment >10: 125838 days onsite
+  150-200 CFM Air Compressor: 8 days onsite
+  Jib/Trussboom: 56 days onsite
+  40-45' Straight Boom: 21 days onsite
+  10K Forklift Telehandler: 30 days onsite
+  5K Forklift Telehandler: 19 days onsite
+  26-50 kW 45 KVA Generator: 28 days onsite
+  60-66' Straight Boom: 64 days onsite
+
+Job #767- Foreman: Foreman 4, Total Cost: $ 20543
+  5K Forklift Warehouse: 7 days onsite
+  26-35' SL: 36 days onsite
+  400 Amp Welder: 238 days onsite
+  20' Power Deck: 31 days onsite
+  300 Amp Welder Diesel: 65 days onsite
+  300 Amp Welder: 72 days onsite
+  CFM 185@100PSI Air Compressor: 1 days onsite
+  18-20' Runabout: 173 days onsite
+  300 Welder: 20 days onsite
+  0-19' SL Electric: 324 days onsite
+  19' SL: 34 days onsite
+
+Job #805- Foreman: Foreman 3, Total Cost: $ 2750
+  5K Forklift Telehandler: 2 days onsite
+  400 Amp Welder: 2 days onsite
+  Jib/Trussboom: 2 days onsite
+  300 Amp Welder: 5 days onsite
+  0-19' SL Electric: 5 days onsite
+  10K Forklift Telehandler: 5 days onsite
+
+Job #766- Foreman: Foreman 6, Total Cost: $ 8885
+  0-19' SL Electric: 75 days onsite
+  Jib/Trussboom: 46 days onsite
+  40-45' Straight Boom: 22 days onsite
+  10K Forklift Telehandler: 46 days onsite
+
+Job #786- Foreman: Foreman 3, Total Cost: $ 3705
+  0-19' SL Electric: 2 days onsite
+  5K Forklift Telehandler: 1 days onsite
+  400 Amp Welder: 5 days onsite
+  15' Runabout: 10 days onsite
+  60-66' Straight Boom: 4 days onsite
+  300 Amp Welder: 8 days onsite
+  Jib/Trussboom: 4 days onsite
+  10K Forklift Telehandler: 4 days onsite
+
+Job #0- Foreman: , Total Cost: $ 220
+  0-19' SL Electric: 5 days onsite
+  19' SL: 2 days onsite
+  6K Gradall: 2 days onsite
+
+Job #819- Foreman: Foreman 4, Total Cost: $ 2135
+  Jib/Trussboom: 4 days onsite
+  10K Forklift Telehandler: 4 days onsite
+  0-19' SL Electric: 32 days onsite
+
+Job #811- Foreman: Foreman 4, Total Cost: $ 16624
+  5K Forklift Telehandler: 1 days onsite
+  500 Amp Welder: 92 days onsite
+  300 Amp Welder: 5 days onsite
+  18' Material Lift: 76 days onsite
+  10K Forklift Telehandler: 15 days onsite
+  26-35' SL: 4 days onsite
+  400 Amp Welder: 234 days onsite
+  0-19' SL Electric: 221 days onsite
+
+Job #772- Foreman: Foreman 2, Total Cost: $ 16225
+  60-66' Straight Boom: 17 days onsite
+  "0-19' 30"" SL Electric": 113 days onsite
+  400 Amp Welder: 5 days onsite
+  26-35' SL: 49 days onsite
+  300 Amp Welder: 66 days onsite
+  Jib/Trussboom: 61 days onsite
+  10K Forklift Telehandler: 61 days onsite
+  400 AMP Welder: 3 days onsite
+  19' SL: 3 days onsite
+
+Job #806- Foreman: Foreman 6, Total Cost: $ 5644
+  400 Amp Welder: 4 days onsite
+  "3/4"" x 50' Air Hose": 15 days onsite
+  0-19' SL Electric: 8 days onsite
+  150-200 CFM Air Compressor: 15 days onsite
+  Jib/Trussboom: 3 days onsite
+  40-45' Straight Boom: 17 days onsite
+  10K Forklift Telehandler: 4 days onsite
+
+Job #771- Foreman: Foreman 2, Total Cost: $ 125
+  400 Amp Welder: 1 days onsite
+  400 Amp Generator: 7 days onsite
+  6-9' Jib: 1 days onsite
+  10K Gradall: 1 days onsite
+
+Job #768- Foreman: Foreman 3, Total Cost: $ 6300
+  Jib/Trussboom: 74 days onsite
+  8K Forklift Telehandler: 74 days onsite
+
+Job #837- Foreman:  Basis Dublin", Total Cost: $ 810
+  10K Forklift Telehandler: 2 days onsite
+
+Job #796- Foreman: Foreman 7, Total Cost: $ 20305
+  0-19' SL Electric: 21 days onsite
+  4048 SL: 6 days onsite
+  35-45' SL Electric: 34 days onsite
+  300 Amp Welder: 124 days onsite
+  Jib/Trussboom: 40 days onsite
+  26-35' SL: 64 days onsite
+  400 Amp Welder: 71 days onsite
+  12K Forklift Telehandler: 3 days onsite
+  40-45' Straight Boom: 26 days onsite
+  10K Forklift Telehandler: 41 days onsite
+  26-50 kW 45 KVA Generator: 3 days onsite
+
+Job #751- Foreman: Foreman 4, Total Cost: $ 405
+  10K Forklift Telehandler: 1 days onsite
+
+Job #758- Foreman: Foreman 2, Total Cost: $ 1065
+  12K Forklift Telehandler: 1 days onsite
+  10K Forklift Telehandler: 1 days onsite
+
+Job #760- Foreman: Foreman 2, Total Cost: $ 2500
+  400 Amp Welder: 92 days onsite
+  19' Electric Scissor Lift: 4 days onsite
+
+Job #747- Foreman: Foreman 4, Total Cost: $ 600
+  Jib/Trussboom: 1 days onsite
+  0-19' SL Electric: 1 days onsite
+  10K Forklift Telehandler: 1 days onsite
+
+Job #777- Foreman: Foreman 3, Total Cost: $ 1530
+  5K Forklift Telehandler: 4 days onsite
+  300 Amp Welder: 3 days onsite
+  Jib/Trussboom: 1 days onsite
+  10K Forklift Telehandler: 1 days onsite
+  400 Amp Welder: 2 days onsite
+
+Job #808- Foreman: Foreman 2, Total Cost: $ 5870
+  60-66' Straight Boom: 6 days onsite
+  Jib/Trussboom: 29 days onsite
+  10K Forklift Telehandler: 29 days onsite
+  5K Forklift Telehandler: 1 days onsite
+  400 Amp Welder: 32 days onsite
+
 Job #736- Foreman: Foreman 6, Total Cost: $ 1240
   8K Forklift Telehandler: 1 days onsite
   0-19' SL Electric: 30 days onsite
   400 Amp Welder: 5 days onsite
+
+Job #722- Foreman: N/A, Total Cost: $ 250
+  400 Amp Welder: 2 days onsite
 
 Job #731- Foreman: Foreman 2, Total Cost: $ 2740
   10K Forklift Telehandler: 5 days onsite
@@ -13,8 +214,124 @@ Job #731- Foreman: Foreman 2, Total Cost: $ 2740
   45' Articulating: 65 days onsite
   10K Gradall: 34 days onsite
 
-Job #722- Foreman: N/A, Total Cost: $ 250
+Job #794- Foreman: Foreman 2, Total Cost: $ 43490
+  30 Manlift: 1 days onsite
+  60-66' Straight Boom: 1 days onsite
+  10K Telehandler: 4 days onsite
+  0-19' SL Electric: 307 days onsite
+  15' Trussboom: 4 days onsite
+  "0-19' 30"" SL Electric": 7 days onsite
+  10K Forklift Telehandler: 2 days onsite
+  12K Forklift Telehandler: 158 days onsite
+  40-45' Straight Boom: 160 days onsite
+  12' Trussboom: 1 days onsite
   400 Amp Welder: 2 days onsite
+  26-35' SL: 2 days onsite
+  Jib/Trussboom: 157 days onsite
+  80-85' Straight Boom: 3 days onsite
+  5K Forklift Telehandler: 43 days onsite
+
+Job #814- Foreman: Foreman 4, Total Cost: $ 28357
+  0-19' SL Electric: 12 days onsite
+  60-66' Straight Boom: 8 days onsite
+  300 Amp Welder: 14 days onsite
+  Jib/Trussboom: 56 days onsite
+  40-45' Straight Boom: 45 days onsite
+  10K Forklift Telehandler: 56 days onsite
+  35-45' SL DLFL: 54 days onsite
+  400 Amp Welder: 208 days onsite
+  26-35' SL: 28 days onsite
+
+Job #761- Foreman: Foreman 6, Total Cost: $ 4930
+  450 AMP Welder: 1 days onsite
+  400 Amp Welder: 3 days onsite
+  0-19' SL Electric: 10 days onsite
+  "0-19' 30"" SL Electric": 2 days onsite
+  Jib/Trussboom: 5 days onsite
+  12' Trussboom: 3 days onsite
+  10K Forklift Telehandler: 9 days onsite
+
+Job #802- Foreman: Foreman 4, Total Cost: $ 20197
+  150-200 CFM Air Compressor: 38 days onsite
+  Jib/Trussboom: 8 days onsite
+  12K Forklift Telehandler: 75 days onsite
+  10K Forklift Telehandler: 8 days onsite
+  400 Amp Welder: 38 days onsite
+  26-35' SL: 110 days onsite
+  40-45' Articulating Boom: 79 days onsite
+
+Job #776- Foreman: Foreman 2, Total Cost: $ 475
+  500 Amp Welder: 8 days onsite
+
+Job #787- Foreman: Foreman 5, Total Cost: $ 340
+  10K Sky-trak: 36 days onsite
+  15' Truss boom: 36 days onsite
+  45' Boomlift: 62 days onsite
+  26-35' SL: 2 days onsite
+  "40' x 47"" SS Lift (Electric)": 23 days onsite
+  19' Scissorlift: 9 days onsite
+  GS- 1930 scissor lift: 38 days onsite
+  65' Boomlift: 9 days onsite
+  45 KVA Generator: 51 days onsite
+  10k Sky-trak: 27 days onsite
+  12000lbs SkyTrak with 4' Jib: 4 days onsite
+  26' SS Lift (Electric/Wide): 13 days onsite
+  15' truss boom: 27 days onsite
+  4047 SL: 26 days onsite
+  10 Sky-trak: 4 days onsite
+
+Job #840- Foreman: Foreman 3, Total Cost: $ 215
+  5K Forklift Telehandler: 1 days onsite
+
+Job #792- Foreman: Foreman 1, Total Cost: $ 23504
+  400 Amp Welder: 2 days onsite
+  500 Amp Welder: 2 days onsite
+  Jib/Trussboom: 167 days onsite
+  26-50 kW 45 KVA Generator: 118 days onsite
+  "0-19' 30"" SL Electric": 118 days onsite
+  10K Forklift Telehandler: 118 days onsite
+
+Job #795- Foreman: Foreman 6, Total Cost: $ 215
+  5K Forklift Telehandler: 1 days onsite
+
+Job #832- Foreman: Foreman 3, Total Cost: $ 5010
+  5K Forklift Telehandler: 4 days onsite
+  0-19' SL Electric: 54 days onsite
+  26-35' SL: 16 days onsite
+  Jib/Trussboom: 10 days onsite
+  10K Forklift Telehandler: 10 days onsite
+
+Job #799- Foreman: Foreman 3, Total Cost: $ 3170
+  40-45' Articulating Boom: 1 days onsite
+  6K Forklift Telehandler 30': 1 days onsite
+  Jib/Trussboom: 25 days onsite
+  400 Amp Welder: 1 days onsite
+  26-35' SL: 1 days onsite
+  12' Trussboom: 1 days onsite
+  40-45' Straight Boom: 7 days onsite
+  10K Forklift Telehandler: 3 days onsite
+
+Job #775- Foreman: Foreman 6, Total Cost: $ 20670
+  300 Amp Welder Electric: 16 days onsite
+  Jib/Trussboom: 28 days onsite
+  300 Amp Welder: 12 days onsite
+  40-45' Straight Boom: 1 days onsite
+  10K Forklift Telehandler: 34 days onsite
+  15' Trussboom: 21 days onsite
+  60-66' Straight Boom: 67 days onsite
+  10K Telehandler: 16 days onsite
+  400 Amp Welder: 12 days onsite
+  26-50 KW Generator: 16 days onsite
+
+Job #804- Foreman: Foreman 2, Total Cost: $ 36183
+  60-66' Straight Boom: 68 days onsite
+  "3/4"" x 50' Air Hose": 104 days onsite
+  26-50 kW 45 KVA Generator: 111 days onsite
+  26-35' SL: 163 days onsite
+  0-19' SL Electric: 96 days onsite
+  150-200 CFM Air Compressor: 52 days onsite
+  Jib/Trussboom: 89 days onsite
+  10K Forklift Telehandler: 114 days onsite
 
 --------------------------------
 Note: Older jobs may have innacurate sum totals due to missing/incorrect data entry.
